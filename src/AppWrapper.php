@@ -72,7 +72,7 @@ class AppWrapper implements KernelInterface
             $bodySize = $response->getBody()->getSize();
 
             if (null !== $bodySize) {
-                $response = $response->withHeader('Content-Length', $bodySize);
+                $response = $response->withHeader('Content-Length', (string) $bodySize);
             }
         } else {
             $response = $response->withoutHeader('Content-Type')->withoutHeader('Content-Length');
