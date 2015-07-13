@@ -1,5 +1,11 @@
 # Slimmer
 
+![GitHub Issues](https://img.shields.io/github/issues/PHPFastCGI/Slimmer.svg)
+![GitHub Stars](https://img.shields.io/github/stars/PHPFastCGI/Slimmer.svg)
+![GitHub License](https://img.shields.io/badge/license-GPLv2-blue.svg)
+[![Build Status](https://travis-ci.org/PHPFastCGI/Slimmer.svg?branch=master)](https://travis-ci.org/PHPFastCGI/Slimmer)
+[![Coverage Status](https://coveralls.io/repos/PHPFastCGI/Slimmer/badge.svg?branch=master)](https://coveralls.io/r/PHPFastCGI/Slimmer?branch=master)
+
 A PHP package which allows Slim v3 applications to reduce overheads by exposing their Request-Response structure to a FastCGI daemon.
 
 ## Introduction
