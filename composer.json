@@ -1,0 +1,30 @@
+{
+    "name": "phpfastcgi/slimmer",
+    "description": "A bundle to integrate a FastCGI daemon with the Slim v3 micro-framework",
+    "keywords": ["slimmer", "slim", "fastcgi", "server", "fast cgi", "daemon"],
+    "license": "GPL v2",
+    "authors": [
+        {
+            "name": "Andrew Carter",
+            "email": "andrewcarter1992@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "slim/slim": "3.x-dev",
+        "phpfastcgi/fastcgi-daemon": "~0.3"
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPFastCGI\\Slimmer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PHPFastCGI\\Test\\Slimmer\\": "test/"
+        }
+    }
+}
