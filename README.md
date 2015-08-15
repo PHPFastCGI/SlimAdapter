@@ -20,11 +20,9 @@ Using this package, Slim v3 applications can stay alive between HTTP requests wh
 // Include the composer autoloader
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 
-use PHPFastCGI\FastCGIDaemon\Command\DaemonRunCommand;
-use PHPFastCGI\FastCGIDaemon\DaemonFactory;
+use PHPFastCGI\FastCGIDaemon\ApplicationFactory;
 use PHPFastCGI\Slimmer\AppWrapper;
 use Slim\App as SlimApp;
-use Symfony\Component\Console\Application as ConsoleApplication;
 
 // Create your Slim app
 $app = new SlimApp();
@@ -33,18 +31,11 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
     return $response;
 });
 
-// Dependency 1: The daemon factory
-$daemonFactory = new DaemonFactory;
-
-// Dependency 2: A kernel for the FastCGIDaemon library (from the Slim app)
+// Create the kernel for the FastCGIDaemon library (from the Slim app)
 $kernel = new AppWrapper($app);
 
-// Create an instance of DaemonRunCommand using the daemon factory and the kernel
-$command = new DaemonRunCommand('run', 'Run a FastCGI daemon', $daemonFactory, $kernel);
-
-// Create a symfony console application and add the command
-$consoleApplication = new ConsoleApplication;
-$consoleApplication->add($command);
+// Create the symfony console application
+$consoleApplication = (new ApplicationFactory)->createApplication($kernel);
 
 // Run the symfony console application
 $consoleApplication->run();
