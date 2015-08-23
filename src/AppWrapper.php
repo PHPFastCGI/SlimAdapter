@@ -8,6 +8,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
 use Slim\Container;
 use Slim\Exception\Exception as SlimException;
+use Slim\Http\Headers;
+use Slim\Http\Response;
 
 /**
  * Wraps a Slim v3 application object as an implementation of the kernel
@@ -43,7 +45,8 @@ class AppWrapper implements KernelInterface
      */
     public function handleRequest(ServerRequestInterface $request)
     {
-        $response = $this->container->get('response');
+        $headers  =  new Headers(['Content-Type': 'text/html']);
+        $response = (new Response(200, $headers))->withProtocolVersion('1.1');
 
         try {
             $response = $this->app->callMiddlewareStack($request, $response);
