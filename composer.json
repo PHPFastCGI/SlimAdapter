@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "slim/slim": "dev-3.x",
+        "slim/slim": "^3.0@beta",
         "phpfastcgi/fastcgi-daemon": "0.5.*"
     },
     "require-dev": {
