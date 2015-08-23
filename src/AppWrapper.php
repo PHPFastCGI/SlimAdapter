@@ -45,7 +45,7 @@ class AppWrapper implements KernelInterface
      */
     public function handleRequest(ServerRequestInterface $request)
     {
-        $headers  =  new Headers(['Content-Type': 'text/html']);
+        $headers  =  new Headers(['Content-Type' => 'text/html']);
         $response = (new Response(200, $headers))->withProtocolVersion('1.1');
 
         try {
