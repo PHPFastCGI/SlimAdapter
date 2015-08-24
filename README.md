@@ -10,6 +10,12 @@ A PHP package which allows Slim v3 applications to reduce overheads by exposing 
 
 Using this package, Slim v3 applications can stay alive between HTTP requests whilst operating behind the protection of a FastCGI enabled web server.
 
+## Installing
+
+```sh
+composer require "phpfastcgi/slimmer:0.2.*"
+```
+
 ## Usage
 
 ```php
