@@ -21,12 +21,12 @@ class AppWrapper implements KernelInterface
     /**
      * @var App
      */
-    protected $app;
+    private $app;
 
     /**
      * @var Container
      */
-    protected $container;
+    private $container;
 
     /**
      * Constructor.
