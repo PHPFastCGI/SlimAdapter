@@ -2,6 +2,7 @@
 
 namespace PHPFastCGI\Slimmer;
 
+use PHPFastCGI\FastCGIDaemon\Http\RequestInterface;
 use PHPFastCGI\FastCGIDaemon\KernelInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -43,18 +44,20 @@ class AppWrapper implements KernelInterface
     /**
      * {@inheritdoc}
      */
-    public function handleRequest(ServerRequestInterface $request)
+    public function handleRequest(RequestInterface $request)
     {
+        $serverRequest = $request->getServerRequest();
+
         $headers  =  new Headers(['Content-Type' => 'text/html']);
         $response = (new Response(200, $headers))->withProtocolVersion('1.1');
 
         try {
-            $response = $this->app->callMiddlewareStack($request, $response);
+            $response = $this->app->callMiddlewareStack($serverRequest, $response);
         } catch (SlimException $exception) {
             $response = $exception->getResponse();
         } catch (\Exception $exception) {
             $errorHandler = $this->container->get('errorHandler');
-            $response = $errorHandler($request, $response, $exception);
+            $response = $errorHandler($serverRequest, $response, $exception);
         }
 
         return $this->finalizeResponse($response);

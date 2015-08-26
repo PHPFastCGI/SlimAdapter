@@ -2,11 +2,11 @@
 
 namespace PHPFastCGI\Test\Slimmer;
 
+use PHPFastCGI\FastCGIDaemon\Http\Request;
 use PHPFastCGI\Slimmer\AppWrapper;
 use Slim\App;
 use Slim\Exception\Exception as SlimException;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Diactoros\ServerRequest;
 
 /**
  * Tests the app wrapper.
@@ -31,13 +31,16 @@ class AppWrapperTest extends \PHPUnit_Framework_TestCase
         $kernel = new AppWrapper($app);
 
         // Create a request to test the route set up for the app
-        $request = new ServerRequest([], [], '/hello/Andrew');
+        $stream  = fopen('php://temp', 'r');
+        $request = new Request(['REQUEST_URI' => '/hello/Andrew'], $stream);
 
         // Get the response from the kernel that is wrapping the app
         $response = $kernel->handleRequest($request);
 
         // Check that the app has been wrapper properly by comparing to expected response
         $this->assertSame('Hello, Andrew', (string) $response->getBody());
+
+        fclose($stream);
     }
 
     /**
@@ -61,13 +64,16 @@ class AppWrapperTest extends \PHPUnit_Framework_TestCase
         $kernel = new AppWrapper($app);
 
         // Create a request to test the route set up for the app
-        $request = new ServerRequest([], [], '/hello/Andrew');
+        $stream  = fopen('php://temp', 'r');
+        $request = new Request(['REQUEST_URI' => '/hello/Andrew'], $stream);
 
         // Get the response from the kernel that is wrapping the app
         $response = $kernel->handleRequest($request);
 
         // Check that the app has been wrapper properly by comparing to expected response
         $this->assertEquals((string) $expectedResponse->getBody(), (string) $response->getBody());
+
+        fclose($stream);
     }
 
     /**
@@ -87,13 +93,16 @@ class AppWrapperTest extends \PHPUnit_Framework_TestCase
         $kernel = new AppWrapper($app);
 
         // Create a request to test the route set up for the app
-        $request = new ServerRequest([], [], '/hello/Andrew');
+        $stream  = fopen('php://temp', 'r');
+        $request = new Request(['REQUEST_URI' => '/hello/Andrew'], $stream);
 
         // Get the response from the kernel that is wrapping the app
         $response = $kernel->handleRequest($request);
 
         // Check that the app has returned a valid response
         $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
+
+        fclose($stream);
     }
 
     /**
@@ -118,7 +127,8 @@ class AppWrapperTest extends \PHPUnit_Framework_TestCase
         $kernel = new AppWrapper($app);
 
         // Create a request to test the route set up for the app
-        $request = new ServerRequest([], [], '/hello/Andrew');
+        $stream  = fopen('php://temp', 'r');
+        $request = new Request(['REQUEST_URI' => '/hello/Andrew'], $stream);
 
         // Get the response from the kernel that is wrapping the app
         $response = $kernel->handleRequest($request);
@@ -127,5 +137,7 @@ class AppWrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Hello', (string) $response->getBody());
         $this->assertFalse($response->hasHeader('Content-Type'));
         $this->assertFalse($response->hasHeader('Content-Length'));
+
+        fclose($stream);
     }
 }
