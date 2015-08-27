@@ -6,6 +6,8 @@
 
 A PHP package which allows Slim v3 applications to reduce overheads by exposing their Request-Response structure to a FastCGI daemon.
 
+Visit the [project website](http://phpfastcgi.github.io/).
+
 ## Introduction
 
 Using this package, Slim v3 applications can stay alive between HTTP requests whilst operating behind the protection of a FastCGI enabled web server.
