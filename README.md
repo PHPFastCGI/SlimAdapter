@@ -15,7 +15,7 @@ Using this package, Slim v3 applications can stay alive between HTTP requests wh
 ## Installing
 
 ```sh
-composer require "phpfastcgi/slimmer:0.2.*"
+composer require "phpfastcgi/slimmer:0.3.*"
 ```
 
 ## Usage
