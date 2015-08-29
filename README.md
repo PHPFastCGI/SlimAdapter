@@ -12,6 +12,12 @@ Visit the [project website](http://phpfastcgi.github.io/).
 
 Using this package, Slim v3 applications can stay alive between HTTP requests whilst operating behind the protection of a FastCGI enabled web server.
 
+## Current Status
+
+This daemon is currently in early development stages and not considered stable. A stable release is expected by September 2015.
+
+Contributions and suggestions are welcome.
+
 ## Installing
 
 ```sh
@@ -61,10 +67,3 @@ FastCgiServer /path/to/web/root/script.fcgi
 ```
 
 If you are using a web server such as nginx, you will need to use a process manager to monitor and run your application.
-
-## Current Status
-
-This library is currently in early development stages and not considered stable. A stable release is expected by September 2015.
-
-Contributions and suggestions are welcome
-
