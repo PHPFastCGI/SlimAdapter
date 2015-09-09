@@ -14,7 +14,7 @@ Using this package, Slim v3 applications can stay alive between HTTP requests wh
 
 ## Current Status
 
-This daemon is currently in early development stages and not considered stable. A stable release is expected by September 2015.
+This project is currently in early stages of development and not considered stable. Importantly, this library currently lacks support for uploaded files. Also a memory leak protection feature is scheduled for integration that allows the daemon to shutdown after handling 'N' requests.
 
 Contributions and suggestions are welcome.
 
