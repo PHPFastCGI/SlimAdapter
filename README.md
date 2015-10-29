@@ -1,6 +1,5 @@
 # Slimmer
 
-![GitHub License](https://img.shields.io/badge/license-GPLv2-blue.svg)
 [![Build Status](https://travis-ci.org/PHPFastCGI/Slimmer.svg?branch=master)](https://travis-ci.org/PHPFastCGI/Slimmer)
 [![Coverage Status](https://coveralls.io/repos/PHPFastCGI/Slimmer/badge.svg?branch=master)](https://coveralls.io/r/PHPFastCGI/Slimmer?branch=master)
 
