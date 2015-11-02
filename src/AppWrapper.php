@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPFastCGI\Slimmer;
+namespace PHPFastCGI\Adapter\Slim;
 
 use PHPFastCGI\FastCGIDaemon\Http\RequestInterface;
 use PHPFastCGI\FastCGIDaemon\KernelInterface;

@@ -2,8 +2,8 @@
 
 namespace PHPFastCGI\Test\Slimmer;
 
+use PHPFastCGI\Adapter\Slim\AppWrapper;
 use PHPFastCGI\FastCGIDaemon\Http\Request;
-use PHPFastCGI\Slimmer\AppWrapper;
 use Slim\App;
 use Slim\Exception\Exception as SlimException;
 use Zend\Diactoros\Response\HtmlResponse;

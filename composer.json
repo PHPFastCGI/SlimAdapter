@@ -1,7 +1,7 @@
 {
-    "name": "phpfastcgi/slimmer",
-    "description": "A bundle to integrate a FastCGI daemon with the Slim v3 micro-framework",
-    "keywords": ["slimmer", "slim", "fastcgi", "server", "fast cgi", "daemon"],
+    "name": "phpfastcgi/slim-adapter",
+    "description": "A PHPFastCGI adapter for the Slim v3 micro-framework",
+    "keywords": ["slim", "fastcgi", "server", "fast cgi", "daemon"],
     "license": "GPL v2",
     "authors": [
         {
@@ -19,12 +19,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PHPFastCGI\\Slimmer\\": "src/"
+            "PHPFastCGI\\Adapter\\Slim\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PHPFastCGI\\Test\\Slimmer\\": "test/"
+            "PHPFastCGI\\Test\\Adapter\\Slim\\": "test/"
         }
     }
 }
