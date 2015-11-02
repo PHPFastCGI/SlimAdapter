@@ -1,4 +1,4 @@
-# Slimmer
+# PHPFastCGI Slim Adapter
 
 [![Build Status](https://travis-ci.org/PHPFastCGI/Slimmer.svg?branch=master)](https://travis-ci.org/PHPFastCGI/Slimmer)
 [![Coverage Status](https://coveralls.io/repos/PHPFastCGI/Slimmer/badge.svg?branch=master)](https://coveralls.io/r/PHPFastCGI/Slimmer?branch=master)
@@ -13,14 +13,14 @@ Using this package, Slim v3 applications can stay alive between HTTP requests wh
 
 ## Current Status
 
-This project is currently in early stages of development and not considered stable. Importantly, this library currently lacks support for uploaded files. Also a memory leak protection feature is scheduled for integration that allows the daemon to shutdown after handling 'N' requests.
+This project is currently in early stages of development and not considered stable. Importantly, this library currently lacks support for uploaded files.
 
 Contributions and suggestions are welcome.
 
 ## Installing
 
 ```sh
-composer require "phpfastcgi/slimmer:^0.4"
+composer require "phpfastcgi/slim-adapter:^0.5"
 ```
 
 ## Usage
@@ -32,11 +32,11 @@ composer require "phpfastcgi/slimmer:^0.4"
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 
 use PHPFastCGI\FastCGIDaemon\ApplicationFactory;
-use PHPFastCGI\Slimmer\AppWrapper;
-use Slim\App as SlimApp;
+use PHPFastCGI\Adapter\Slim\AppWrapper;
+use Slim\App;
 
 // Create your Slim app
-$app = new SlimApp();
+$app = new App();
 $app->get('/hello/{name}', function ($request, $response, $args) {
     $response->write('Hello, ' . $args['name']);
     return $response;
