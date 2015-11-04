@@ -1,7 +1,10 @@
 # PHPFastCGI Slim Adapter
 
-[![Build Status](https://travis-ci.org/PHPFastCGI/Slimmer.svg?branch=master)](https://travis-ci.org/PHPFastCGI/Slimmer)
-[![Coverage Status](https://coveralls.io/repos/PHPFastCGI/Slimmer/badge.svg?branch=master)](https://coveralls.io/r/PHPFastCGI/Slimmer?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/phpfastcgi/slim-adapter/v/stable)](https://packagist.org/packages/phpfastcgi/slim-adapter)
+[![Build Status](https://travis-ci.org/PHPFastCGI/SlimAdapter.svg?branch=v0.5.0)](https://travis-ci.org/PHPFastCGI/SlimAdapter)
+[![Coverage Status](https://coveralls.io/repos/PHPFastCGI/SlimAdapter/badge.svg?branch=master&service=github)](https://coveralls.io/github/PHPFastCGI/SlimAdapter?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPFastCGI/SlimAdapter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/PHPFastCGI/SlimAdapter/?branch=master)
+[![Total Downloads](https://poser.pugx.org/phpfastcgi/slim-adapter/downloads)](https://packagist.org/packages/phpfastcgi/slim-adapter)
 
 A PHP package which allows Slim v3 applications to reduce overheads by exposing their Request-Response structure to a FastCGI daemon.
 
