@@ -4,11 +4,7 @@ namespace PHPFastCGI\Adapter\Slim;
 
 use PHPFastCGI\FastCGIDaemon\Http\RequestInterface;
 use PHPFastCGI\FastCGIDaemon\KernelInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
-use Slim\Container;
-use Slim\Exception\Exception as SlimException;
 use Slim\Http\Headers;
 use Slim\Http\Response;
 
@@ -24,21 +20,13 @@ class AppWrapper implements KernelInterface
     private $app;
 
     /**
-     * @var Container
-     */
-    private $container;
-
-    /**
      * Constructor.
      * 
      * @param App $app The Slim v3 application object to wrap
      */
     public function __construct(App $app)
     {
-        $this->app       = $app;
-        $this->container = $app->getContainer();
-
-        $this->container->get('router')->finalize();
+        $this->app = $app;
     }
 
     /**
@@ -48,42 +36,10 @@ class AppWrapper implements KernelInterface
     {
         $serverRequest = $request->getServerRequest();
 
-        $headers  =  new Headers(['Content-Type' => 'text/html']);
-        $response = (new Response(200, $headers))->withProtocolVersion('1.1');
+        $headers = new Headers(['Content-Type' => 'text/html; charset=UTF-8']);
+        $response = new Response(200, $headers);
+        $response = $response->withProtocolVersion('1.1');
 
-        try {
-            $response = $this->app->callMiddlewareStack($serverRequest, $response);
-        } catch (SlimException $exception) {
-            $response = $exception->getResponse();
-        } catch (\Exception $exception) {
-            $errorHandler = $this->container->get('errorHandler');
-            $response = $errorHandler($serverRequest, $response, $exception);
-        }
-
-        return $this->finalizeResponse($response);
-    }
-
-    /**
-     * Finalizes the applications response, similar to Slim\App::respond()
-     * 
-     * @param ResponseInterface $response
-     * 
-     * @return ResponseInterface
-     */
-    private function finalizeResponse(ResponseInterface $response)
-    {
-        $statusCode = $response->getStatusCode();
-
-        if ($statusCode !== 204 && $statusCode !== 304) {
-            $bodySize = $response->getBody()->getSize();
-
-            if (null !== $bodySize) {
-                $response = $response->withHeader('Content-Length', (string) $bodySize);
-            }
-        } else {
-            $response = $response->withoutHeader('Content-Type')->withoutHeader('Content-Length');
-        }
-
-        return $response;
+        return $this->app->process($serverRequest, $response);
     }
 }
