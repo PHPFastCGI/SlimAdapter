@@ -18,12 +18,14 @@ Using this package, Slim v3 applications can stay alive between HTTP requests wh
 
 This project is currently in early stages of development and not considered stable. Importantly, this library currently lacks support for uploaded files.
 
+There are currently [two known issues for this adapter](#known-issues).
+
 Contributions and suggestions are welcome.
 
 ## Installing
 
 ```sh
-composer require "phpfastcgi/slim-adapter:^0.5"
+composer require "phpfastcgi/slim-adapter:^0.6"
 ```
 
 ## Usage
@@ -69,3 +71,11 @@ FastCgiServer /path/to/web/root/script.fcgi
 ```
 
 If you are using a web server such as nginx, you will need to use a process manager to monitor and run your application.
+
+## Known Issues
+
+There are two known issues with this adapter that will be fixed in later versions.
+
+1. Some Slim applications make use of additional helper methods on the Slim PSR-7 request object. Currently, PHPFastCGI uses request objects created by [Diactoros](https://github.com/zendframework/zend-diactoros) that do not have these helper methods. It is likely that some middleware that switches the Diactoros request to a Slim request will be created in the not too distant future.
+
+2. Slim still keeps the request and response objects in the container. These container entries will not be valid for Slim applications running under PHPFastCGI. The request and response should always be received as method parameters.
