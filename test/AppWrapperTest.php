@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPFastCGI\Test\Slimmer;
+namespace PHPFastCGI\Test\Slim;
 
 use PHPFastCGI\Adapter\Slim\AppWrapper;
 use PHPFastCGI\FastCGIDaemon\Http\Request;
